@@ -1,5 +1,6 @@
 package rocks.zipcode;
 
+//import com.sun.org.apache.xpath.internal.operations.Boolean;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class  TestStack {
 
 
     @Test
-    public void TestStack2(){
+    public void TestStackPop() {
         //Test Pop method
         Stack<Integer> intStack = new Stack<>();
         intStack.push(12345);
@@ -34,24 +35,74 @@ public class  TestStack {
         int element = intStack.pop();
         System.out.println("Element :" + element);
 
-        Assert.assertEquals(element,5401);
+        Assert.assertEquals(element, 5401);
 
     }
 
     @Test
-    public void PeekStackTest(){
+    public void TestStackPeek() {
         Stack<Object> objectStack = new Stack<>();
         objectStack.push("Donut");
         objectStack.push(5401);
         Object value = objectStack.peek();
         System.out.println("Value peeked is: " + value);
 
-        Assert.assertEquals(5401,value);
+        Assert.assertEquals(5401, value);
+    }
 
+
+    @Test
+    public void TestStackIsEmpty() {
+        Stack<Object> emptyStack = new Stack<>();
+        emptyStack.push("Name");
+        emptyStack.push("Address");
+        Assert.assertFalse(emptyStack.isEmpty());
+
+        System.out.println("Name was found: " + emptyStack.search("Name"));
+
+        emptyStack.pop();
+        emptyStack.pop();
+        Assert.assertTrue(emptyStack.isEmpty());
+
+    }
+
+
+    @Test
+    public void TestStackSearch() {
+        Stack<Object> emptyStack = new Stack<>();
+        emptyStack.push("Name");
+        emptyStack.push("Address");
+        emptyStack.add("Aarav");
+        emptyStack.add("Arjun");
+
+
+        System.out.println("Name was found: " + emptyStack.search("Name"));
+
+        //Search in stack gives position of element in stack.
+        Assert.assertEquals(4, emptyStack.search("Name"));
+    }
+
+    @Test
+    public void StackAddRemoveIndexTest() {
+
+        //ADD AND REMOVE TO AND FROM GIVEN INDEX POINT
+        Stack<Object> removeMethod = new Stack<>();
+
+        removeMethod.add(0, 1001);
+        removeMethod.add(1, 200);
+        removeMethod.add(2, 300);
+
+        //Remove from a given index position in STACK
+        Integer valueRemoved = (Integer) removeMethod.remove(2);
+
+        System.out.println("Stack : " + removeMethod);
+        System.out.println("Value removed : " + valueRemoved);
+
+    }
+
+}
 
 /*EXAMPLE FOR HOW TO USE OBJECT GENERIC TYPE WITH STRING OR INTEGER DATA*/
-
-
 
 //        Stack<Object> objectStack = new Stack<>();
 //        objectStack.push("Donut");
@@ -72,10 +123,7 @@ public class  TestStack {
 //            Integer intValue = (Integer) popped;
 //            System.out.println("Popped value: " + intValue);  // Output will be 5401
 //        }
-//
-
-    }
 
 
     // Make a bigger test exercising more Stack methods.....
-}
+
